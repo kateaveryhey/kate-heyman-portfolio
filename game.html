@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In-N-Out Receipt Guessing Game</title>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f7f4;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .game-box {
+            background: white;
+            max-width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-box">
+        <h1>In-N-Out Receipt Guessing Game 🍔</h1>
+        <p>
+            You just ordered at In-N-Out.  
+            Guess the receipt number between <strong>1 and 100</strong>!
+        </p>
+
+        <input type="number" id="guessInput" placeholder="Enter receipt number">
+        <br>
+        <button onclick="checkGuess()">Submit Order</button>
+
+        <p id="message"></p>
+
+        <p>
+            <a href="scratch.html">← Back to Scratch Page</a>
+        </p>
+    </div>
+
+    <script>
+        // In-N-Out themed guessing game (AI-assisted)
+        let receiptNumber = Math.floor(Math.random() * 100) + 1;
+        let guesses = 0;
+
+        function checkGuess() {
+            const userGuess = Number(document.getElementById("guessInput").value);
+            const message = document.getElementById("message");
+            guesses++;
+
+            if (!userGuess) {
+                message.textContent = "Please enter a receipt number.";
+            } else if (userGuess < receiptNumber) {
+                message.textContent = "Too low — your order isn’t ready yet!";
+            } else if (userGuess > receiptNumber) {
+                message.textContent = "Too high — you might be cutting the line!";
+            } else {
+                message.textContent =
+                    "🍔 Order up! You guessed the receipt number in " +
+                    guesses +
+                    " tries!";
+            }
+        }
+    </script>
+
+</body>
+</html>
